@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./TravelSmile
+      dockerfile: Dockerfile
+    container_name: travelsmile-api
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
+  frontend:
+    build:
+      context: ./travel-smile-frontend
+      dockerfile: Dockerfile
+    container_name: travelsmile-front
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
